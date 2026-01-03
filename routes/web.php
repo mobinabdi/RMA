@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserRoleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,4 +20,13 @@ Route::middleware('auth')->group(function () {
 });
 Route::post('/verify-national-id', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'verifyNationalId'])
     ->name('verify.national_id');
+Route::get('/users', [UserRoleController::class, 'index'])->name('users.index');
+Route::post('/users/{user}/roles', [UserRoleController::class, 'assignRoles'])->name('users.assignRoles');
+
+
+Route::get('/roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
+Route::put('/roles/{role}', [RoleController::class, 'update'])->name('roles.update');
+Route::delete('/roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
+
+
 require __DIR__.'/auth.php';
