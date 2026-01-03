@@ -65,7 +65,27 @@
                           required />
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
+        <!-- جنسیت -->
+        <div class="mt-4">
+            <x-input-label value="جنسیت" />
 
+            <div class="flex items-center gap-6 mt-2">
+                <label class="flex items-center gap-2">
+                    <input type="radio" name="sex" value="1"
+                           {{ old('sex') == '1' ? 'checked' : '' }}
+                           required>
+                    <span>مرد</span>
+                </label>
+
+                <label class="flex items-center gap-2">
+                    <input type="radio" name="sex" value="2"
+                        {{ old('sex') == '2' ? 'checked' : '' }}>
+                    <span>زن</span>
+                </label>
+            </div>
+
+            <x-input-error :messages="$errors->get('sex')" class="mt-2" />
+        </div>
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                 قبلاً ثبت‌نام کرده‌اید؟
