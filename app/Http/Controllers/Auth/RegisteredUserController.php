@@ -47,6 +47,7 @@ class RegisteredUserController extends Controller
             'code_referee'=>$code_referee,
         ]);
 
+
         event(new Registered($user));
 
         Auth::login($user);
